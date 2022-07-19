@@ -43,9 +43,8 @@ def main():
     #build net
     net = ff.FFnet(nnf.relu, nnf.relu_grad)
 
-    net.add_layer(784, 196)
-    net.add_layer(196, 49)
-    net.add_layer(49, 10, True)
+    net.add_layer(784, 150)
+    net.add_layer(150, 10, True)
 
     #train on train_X, train_y
     print("Beginning Training!")

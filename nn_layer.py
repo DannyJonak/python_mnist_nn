@@ -78,11 +78,11 @@ class OutputLayer(Layer):
 
     def forward_pass(self, data):
             
-            self.input = data
-            self.linear_output = np.dot(self.input, self.weights) + self.bias
-            self.output = nnf.softmax(self.linear_output)
+        self.input = data
+        self.linear_output = np.dot(self.input, self.weights) + self.bias
+        self.output = nnf.softmax(self.linear_output)
 
-            return self.output
+        return self.output
 
 
     def get_grads(self, label):

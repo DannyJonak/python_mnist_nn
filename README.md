@@ -8,6 +8,6 @@ The net is built using only python and numpy.
 **feed_forward_net.py** contains a class to implement a feed forward network. <br />
 **mnist_classification.py** is a script that builds a network using the implementation found in feed_forward_net.py and then tests it on mnist digits. <br />
 
-Required Libraries: <br />
+**Required Libraries:** <br />
 Numpy <br />
 Keras - to load mnist dataset <br />

@@ -3,5 +3,5 @@
 class LayerSizeError(Exception):
     pass
 
-class AddingToOutputLayer(Exception):
+class OutputLayerError(Exception):
     pass

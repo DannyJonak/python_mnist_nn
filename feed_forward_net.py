@@ -33,6 +33,12 @@ class FFnet:
             new_layer = l.OutputLayer(input_size, num_nodes)
         self.layers.append(new_layer)
 
+    def remove_layer(self):
+
+        if not self.layers:
+            return
+        self.layers.pop()
+
     
     def predict(self, sample):
 

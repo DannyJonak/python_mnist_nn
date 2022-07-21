@@ -1,8 +1,8 @@
 #feed forward neural network module
 
 import numpy as np
-import nn_layer as l
-import nn_functions as nnf
+import resources.nn_layer as l
+import resources.nn_functions as nnf
 
 class FFnet:
     """
@@ -19,7 +19,7 @@ class FFnet:
 
 
     def add_layer(self, input_size, num_nodes, output_layer=False):
-
+        
         if not output_layer:
             new_layer = l.HiddenLayer(input_size, num_nodes, self.activation, self.activation_grad)
         else:

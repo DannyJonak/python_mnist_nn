@@ -1,7 +1,7 @@
 #neural net layer module
 
 import numpy as np
-import nn_functions as nnf
+import resources.nn_functions as nnf
 
 class Layer:
     """

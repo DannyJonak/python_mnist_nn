@@ -1,7 +1,7 @@
 
 from keras.datasets import mnist
 import feed_forward_net as ff
-import nn_functions as nnf
+import resources.nn_functions as nnf
 import numpy as np
 
 def one_hot(L, dim) -> list:

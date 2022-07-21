@@ -2,7 +2,6 @@
 
 import numpy as np
 import resources.nn_layer as l
-import resources.nn_functions as nnf
 import resources.customexceptions as cs
 
 class FFnet:

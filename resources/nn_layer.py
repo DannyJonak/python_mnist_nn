@@ -10,6 +10,9 @@ class Layer:
 
     def __init__(self, input_size: int, num_nodes: int):
 
+        self.input_size = input_size
+        self.num_nodes = num_nodes
+
         self.weights = np.random.uniform(low = -0.5, high = 0.5, size = (input_size, num_nodes))
         self.bias = np.random.uniform(low = -0.5, high = 0.5, size = num_nodes)
 

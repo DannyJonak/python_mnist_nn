@@ -3,6 +3,7 @@
 import numpy as np
 import resources.nn_layer as l
 import resources.nn_functions as nnf
+import resources.customexceptions as cs
 
 class FFnet:
     """
@@ -20,6 +21,12 @@ class FFnet:
 
     def add_layer(self, input_size, num_nodes, output_layer=False):
         
+        if self.layers:
+            if self.layers[-1].kind == 'output':
+                raise cs.AddingToOutputLayer("Unable to add a new layer to an output layer.")
+            if self.layers[-1].num_nodes != input_size:
+                raise cs.LayerSizeError("The input size of this layer does not match the output size of the previous layer.")
+
         if not output_layer:
             new_layer = l.HiddenLayer(input_size, num_nodes, self.activation, self.activation_grad)
         else:

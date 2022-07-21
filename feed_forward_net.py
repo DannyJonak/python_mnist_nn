@@ -23,7 +23,7 @@ class FFnet:
         
         if self.layers:
             if self.layers[-1].kind == 'output':
-                raise cs.AddingToOutputLayer("Unable to add a new layer to an output layer.")
+                raise cs.OutputLayerError("Unable to add a new layer to an output layer.")
             if self.layers[-1].num_nodes != input_size:
                 raise cs.LayerSizeError("The input size of this layer does not match the output size of the previous layer.")
 
@@ -34,9 +34,9 @@ class FFnet:
         self.layers.append(new_layer)
 
     
-    def predict(self, x):
+    def predict(self, sample):
 
-        data = x
+        data = sample
         #iterate through layers and compute output for each layer
         #output from previous layer is input for next layer
         for layer in self.layers:
@@ -58,14 +58,13 @@ class FFnet:
     
     def train(self, input_data, target, epochs, learning_rate=0.01, momentum=0.9):
         
-        #check that self.layers is not empty and includes an output layer
+        #return if self.layers is empty and check that self.layers includes an output layer
         if not self.layers:
             return
         if self.layers[-1].kind != "output":
-            return
+            raise cs.OutputLayerError("Net cannot be trained without an output layer.")
 
         #implement gradient descent with momentum
-
         for epoch in range(epochs):
             
             loss = 0

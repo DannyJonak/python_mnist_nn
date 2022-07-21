@@ -29,20 +29,19 @@ def flatten(X):
 #test feed_forward_net on mnist digits
 def main():
 
-    #load mnist data
+    #load and prepare mnist data
     (train_X, train_y), (test_X, test_y) = mnist.load_data()
 
-    #prepare data
     #flatten input data
-    val_X, val_y = flatten(train_X[10000: 20000]) / 255, one_hot(train_y[10000:20000], 10)
     train_X, test_X = flatten(train_X[:10000]) / 255, flatten(test_X) / 255
 
     #use one hot encoding for training labels
     train_y, test_y = one_hot(train_y[:10000], 10), one_hot(test_y, 10)
 
+
     #build net
     net = ff.FFnet(nnf.relu, nnf.relu_grad)
-
+    #add layers
     net.add_layer(784, 150)
     net.add_layer(150, 10, True)
 
@@ -50,20 +49,20 @@ def main():
     print("Beginning Training!")
     net.train(train_X, train_y, 5)
 
-    #compute accuracy on a validation set
+    #compute accuracy on test set 
     #get predictions
     train_labels = []
-    for x in val_X:
+    for x in test_X:
         train_labels.append(np.argmax(net.predict(x)))
     
     #count correct predictions
     correct = 0
-    for i in range(len(val_y)):
-        if np.argmax(val_y[i]) == train_labels[i]:
+    for i in range(len(test_y)):
+        if np.argmax(test_y[i]) == train_labels[i]:
             correct += 1
     
     #compute accuracy
-    print(correct/len(val_y))
+    print("Accuracy on test set: ", (correct/len(test_y))*100, "%")
 
 
 if __name__=="__main__":
